@@ -1,0 +1,20 @@
+{
+  "name": "elnur-ibr/user-app",
+  "type": "project",
+  "description": "KnowledgeCity small web app",
+  "autoload": {
+    "files": [
+      "app/helpers.php"
+    ],
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "php": "^8.0.2"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist"
+  }
+}
