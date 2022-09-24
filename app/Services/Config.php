@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class Config
+class Config extends BaseService
 {
     /**
      * @var array
@@ -14,11 +14,10 @@ class Config
      */
     public $configPath = __DIR__ . '/../../config';
 
-
     /**
-     * @return void
+     * @return self
      */
-    public function init(): void
+    public function init(): self
     {
         $configFiles = glob($this->configPath . '/*.php');
 
@@ -28,8 +27,14 @@ class Config
 
             $this->config[$key] = require $configFile;
         }
+
+        return $this;
     }
 
+    /**
+     * @param $key
+     * @return array|mixed|null
+     */
     public function get($key)
     {
         if (str_contains($key, '.')) {

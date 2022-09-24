@@ -1,9 +1,10 @@
 <?php
 
 return [
-    [
-        'method' => 'post',
-        'uri'    => 'login',
+    'auth/login' => [
+        'method'     => 'get', //TODO temporarily get
+        'controller' => UserController::class,
+        'action'     => 'login',
     ],
 
 ];
