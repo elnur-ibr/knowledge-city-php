@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Core;
 
 abstract class BaseService implements BaseServiceInterface
 {

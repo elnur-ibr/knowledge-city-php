@@ -1,30 +1,45 @@
 <?php
 
-namespace App\Services;
+namespace App\Core;
 
 class Request extends BaseService
 {
-    public const GET = 'get';
-    public const POST = 'post';
-    public const DELETE = 'delete';
     /**
      * @var string
      */
-    public $method;
+    public const GET = 'get';
 
     /**
      * @var string
      */
-    public $uri;
+    public const POST = 'post';
+
+    /**
+     * @var string
+     */
+    public const DELETE = 'delete';
+
+    /**
+     * @var string
+     */
+    public string $method;
+
+    /**
+     * @var string
+     */
+    public string $uri;
 
     /**
      * @var array
      */
-    public $payload;
+    public array $payload;
 
+    /**
+     * @return $this
+     */
     public function init(): self
     {
-        $this->method = $_SERVER['REQUEST_METHOD'];
+        $this->method = constant(Request::class . '::' .$_SERVER['REQUEST_METHOD']);
 
         $this->uri  = ltrim(trim($_SERVER['REQUEST_URI']),'/');
 
@@ -33,7 +48,10 @@ class Request extends BaseService
                 $this->payload = $_GET;
                 break;
             case static::POST:
-                $this->payload = $_POST;
+                $this->payload = array_merge(
+                    $_POST,
+                    json_decode(file_get_contents('php://input'), true)
+                );
                 break;
         }
 

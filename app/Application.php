@@ -3,9 +3,9 @@
 namespace App;
 
 use App\Exceptions\RouteException;
-use App\Services\Config;
-use App\Services\Request;
-use App\Services\Router;
+use App\Core\Config;
+use App\Core\Request;
+use App\Core\Router;
 
 class Application
 {
@@ -31,10 +31,14 @@ class Application
         if (is_null($route)) {
             throw new RouteException("There is no route like " . request()->uri . "!");
         }
-        dd(strtolower($route['method']), request()->method);
+
         if (strtolower($route['method']) != request()->method) {
             throw new RouteException(strtoupper(request()->method) . " method not supported for this route.");
         }
+
+        $controllerClass = $route['controller'];
+
+        $controllerClass::execute($route['action'], request());
     }
 
     /**

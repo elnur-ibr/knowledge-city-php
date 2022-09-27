@@ -1,8 +1,10 @@
 <?php
 
+use App\Controllers\UserController;
+
 return [
-    'auth/login' => [
-        'method'     => 'get', //TODO temporarily get
+    'api/auth/login' => [
+        'method'     => 'post', //TODO temporarily get
         'controller' => UserController::class,
         'action'     => 'login',
     ],

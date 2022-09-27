@@ -15,6 +15,7 @@
   - nothing special required in the task.
 - Might add error logging but seems out off scope.
 - MIght use singleton pattern but seems out of scope.
+- Could have added a lot more exception handlers
 
 
 
