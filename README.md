@@ -29,3 +29,5 @@
 #Installation
 - clone git project
 - run composer install
+- import database.sql
+- adjust required database connection config
