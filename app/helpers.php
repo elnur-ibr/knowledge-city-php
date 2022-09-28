@@ -42,3 +42,16 @@ if (!function_exists('request')) {
         return Application::$request;
     }
 }
+
+
+if (!function_exists('abort')) {
+
+    /**
+     * @param $key
+     * @return mixed|null
+     */
+    function abort()
+    {
+        return Application::$request;
+    }
+}
