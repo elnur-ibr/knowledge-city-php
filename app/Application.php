@@ -2,7 +2,8 @@
 
 namespace App;
 
-use App\Exceptions\RouteException;
+use App\Core\Exceptions\RouteException;
+use App\Core\ExceptionHandler;
 use App\Core\Config;
 use App\Core\Request;
 use App\Core\Router;
@@ -28,17 +29,21 @@ class Application
     {
         $route = static::$router->get(request()->uri);
 
-        if (is_null($route)) {
-            throw new RouteException("There is no route like " . request()->uri . "!");
-        }
+        ExceptionHandler::handle(function () use ($route) {
+            if (is_null($route)) {
+                throw new RouteException("There is no route like " . request()->uri . "!", 404);
+            }
 
-        if (strtolower($route['method']) != request()->method) {
-            throw new RouteException(strtoupper(request()->method) . " method not supported for this route.");
-        }
+            if (strtolower($route['method']) != request()->method) {
+                throw new RouteException(strtoupper(request()->method) . " method not supported for this route.", 405);
+            }
 
-        $controllerClass = $route['controller'];
+            $this->middlewares($route);
 
-        $controllerClass::execute($route['action'], request());
+            $controllerClass = $route['controller'];
+
+            $controllerClass::execute($route['action'], request());
+        });
     }
 
     /**
@@ -73,5 +78,14 @@ class Application
     public function registerRequest(): void
     {
         static::$request = Request::register();
+    }
+
+    public function middlewares($route)
+    {
+        if (isset($route['middlewares'])) {
+            foreach ($route['middlewares'] as $middlewareClass) {
+                (new $middlewareClass)->handle();
+            }
+        }
     }
 }

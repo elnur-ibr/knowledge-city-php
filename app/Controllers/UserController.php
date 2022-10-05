@@ -2,39 +2,47 @@
 
 namespace App\Controllers;
 
+use App\Core\Exceptions\UnauthorizedException;
 use App\Core\Validation;
-use App\Models\User;
-use App\Core\Hash;
+use App\Core\Controller;
+use App\Core\Response;
 use App\Core\Request;
+use App\Core\Auth;
 
-class UserController extends BaseController
+class UserController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return int
+     * @throws UnauthorizedException
+     */
     public function login(Request $request)
     {
-        Validation::make(
+        Validation::check(
             $request->payload,
             [
-                'email' => ['required', 'email'],
-                'password' => ['required', 'string']
+                'email'    => ['required', 'email'],
+                'password' => ['required', 'string'],
+                'remember_me' => ['sometimes', 'bool']
             ]
         );
-        //TODO migth create core to validate input but it takes a lot of time
-        $this->attempt($request->payload);
 
-
+        return Response::json(
+            Auth::attempt(
+                $request->payload,
+                $request->payload['remember_me']
+            )
+        );
     }
 
-    protected function attempt($credentials): bool
-    {
-        $user = User::where('email',$request->payload['email'])->first();
-
-        Hash::check($request->payload['password'], $user['password']);
-
-        return false;
-    }
-
+    /**
+     * @param Request $request
+     * @return int
+     */
     public function logout(Request $request)
     {
-        //TODO
+        Auth::destroy();
+
+        return Response::json('Ok.');
     }
 }

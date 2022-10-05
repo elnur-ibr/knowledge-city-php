@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "6cf78cc6-d3e0-42d1-b571-17f838f3b444",
+		"name": "Knowledge City",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "1829096"
+	},
+	"item": [
+		{
+			"name": "knowled-city login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin@admin.com\",\r\n    \"password\": \"password\",\r\n    \"remember_me\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://knowledge-city-php.test/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "knowled-city students",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 5c987a1c5c698ac7c7a7a99ea5b6f767",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://knowledge-city-php.test/api/student?page=5&perPage=15",
+					"protocol": "http",
+					"host": [
+						"knowledge-city-php",
+						"test"
+					],
+					"path": [
+						"api",
+						"student"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "5"
+						},
+						{
+							"key": "perPage",
+							"value": "15"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "knowled-city logout",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer fafb20cca3d8458fc4cfa44e6a4a528e",
+						"type": "text"
+					}
+				],
+				"url": "http://knowledge-city-php.test/api/auth/logout"
+			},
+			"response": []
+		}
+	]
+}

@@ -4,10 +4,10 @@ namespace App\Models;
 
 use App\Core\Model;
 
-class User extends Model
+class Student extends Model
 {
     /**
      * @var string
      */
-    protected string $table = 'users';
+    protected string $table = 'students';
 }

@@ -2,9 +2,16 @@
 
 namespace App\Core\Exceptions;
 
-use Exception;
+use Throwable;
 
-class ValidationException extends Exception
+class ValidationException extends BaseException
 {
+    public array $messages;
 
+    public function __construct(array $messages, $code = 422, Throwable $previous = null)
+    {
+        parent::__construct('', $code);
+
+        $this->messages = $messages;
+    }
 }

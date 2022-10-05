@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Core;
 
 use App\Core\Request;
 
-abstract class BaseController
+abstract class Controller
 {
     public static function execute($action, Request $request)
     {
