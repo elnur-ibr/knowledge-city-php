@@ -1,12 +1,3 @@
-#Started working
-##Identify key objective of the project
-- security
-  - sql injection
-  - sanitize inputs
-  - storing sensitive information. Should be hased. Like Password.
-- clean code
-- OOP
-
 ##Though
 - Session maybe
 - Just create random string and use it as JWT
@@ -17,6 +8,7 @@
 - MIght use singleton pattern but seems out of scope.
 - Could have added a lot more exception handlers
 - Not creating model relations.
+- ***There could be done a lot improvment on both sides (back-end and front-end)***
 
 #Installation
 - clone git project
