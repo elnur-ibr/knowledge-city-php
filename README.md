@@ -21,8 +21,10 @@
 #Installation
 - clone git project
 - run `composer install`
+- configure cors (default is http://localhost:3000)
 - import database.sql
 - adjust required database connection in config
 - clone react repository
 - run `npm install`
 - run `npm run build`
+- User login: `admin@admin.com` and password `password`

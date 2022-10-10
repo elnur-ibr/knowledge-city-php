@@ -38,7 +38,7 @@ return [
         'action'     => 'index',
         'middlewares' => [
             StartSession::class,
-            //Authenticate::class
+            Authenticate::class
         ]
     ],
 ];
