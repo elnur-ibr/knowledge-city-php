@@ -14,6 +14,15 @@ return [
             StartSession::class,
         ]
     ],
+    'api/auth/user' => [
+        'method'     => 'get',
+        'controller' => UserController::class,
+        'action'     => 'user',
+        'middlewares' => [
+            StartSession::class,
+            Authenticate::class
+        ]
+    ],
     'api/auth/logout' => [
         'method'     => 'delete',
         'controller' => UserController::class,
@@ -29,7 +38,7 @@ return [
         'action'     => 'index',
         'middlewares' => [
             StartSession::class,
-            Authenticate::class
+            //Authenticate::class
         ]
     ],
 ];

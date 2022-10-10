@@ -18,17 +18,11 @@
 - Could have added a lot more exception handlers
 - Not creating model relations.
 
-
-
-#Sections
-##Front end
-###Login form
-###User List
-##Backend
-###Post/login
-
 #Installation
 - clone git project
-- run composer install
+- run `composer install`
 - import database.sql
-- adjust required database connection config
+- adjust required database connection in config
+- clone react repository
+- run `npm install`
+- run `npm run build`

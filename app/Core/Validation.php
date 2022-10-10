@@ -44,7 +44,7 @@ class Validation
 
             foreach ($rules as $rule) {
                 if (method_exists($this, $rule)) {
-                    $this->{$rule}($attribute, $data[$attribute]);
+                    $this->{$rule}($attribute, $data[$attribute] ?? null);
                 }
             }
         }

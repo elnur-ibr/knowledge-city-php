@@ -10,6 +10,7 @@ use App\Core\Router;
 
 class Application
 {
+
     /**
      * @var Config
      */
@@ -25,6 +26,9 @@ class Application
      */
     public static $request;
 
+    /**
+     * @throws \Throwable
+     */
     public function run()
     {
         $route = static::$router->get(request()->uri);
@@ -80,6 +84,9 @@ class Application
         static::$request = Request::register();
     }
 
+    /**
+     * @param $route
+     */
     public function middlewares($route)
     {
         if (isset($route['middlewares'])) {

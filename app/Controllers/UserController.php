@@ -30,7 +30,7 @@ class UserController extends Controller
         return Response::json(
             Auth::attempt(
                 $request->payload,
-                $request->payload['remember_me']
+                $request->payload['remember_me'] ?? false
             )
         );
     }

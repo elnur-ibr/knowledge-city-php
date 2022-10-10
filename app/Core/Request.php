@@ -42,7 +42,7 @@ class Request extends BaseService
         $this->method = constant(Request::class . '::' .$_SERVER['REQUEST_METHOD']);
 
         $this->uri  = ltrim(rtrim(preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '/'),'/');
-        //dd(rtrim(preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '/'));
+
         switch ($this->method) {
             case static::GET:
                 $this->payload = $_GET;
